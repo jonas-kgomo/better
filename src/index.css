@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Colors - HSL values for easy manipulation */
+    /* Dark Theme - More organic, less "cyberpunk" */
+    --background: 240 5% 8%; /* Softer dark */
+    --foreground: 40 10% 96%; /* Slightly warm white */
+    
+    --primary: 260 20% 60%; /* Muted purple/slate */
+    --primary-foreground: 240 5% 8%;
+    
+    --secondary: 210 15% 20%;
+    --secondary-foreground: 40 10% 96%;
+    
+    --surface: 240 4% 12%;
+    --surface-hover: 240 4% 16%;
+    
+    --border: 240 4% 20%;
+    
+    /* Aegis Semantic Palette */
+    --safety: 210 60% 50%;   /* Calm Blue */
+    --action: 140 40% 50%;   /* Constructive Green */
+    --caution: 35 80% 50%;   /* Insight Amber */
+    --alert: 0 60% 50%;      /* Critical Red */
+    
+    /* Radius - Less rounded */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-full: 9999px;
+  }
+
+  /* Light Theme Override - Paper-like, warm */
+  .light {
+    --background: 40 20% 98%; /* Warm paper white */
+    --foreground: 240 5% 15%; /* Soft charcoal */
+    
+    --primary: 260 10% 40%; /* Muted slate */
+    --primary-foreground: 40 20% 98%;
+    
+    --secondary: 40 10% 92%;
+    --secondary-foreground: 240 5% 15%;
+    
+    --surface: 0 0% 100%;
+    --surface-hover: 40 10% 96%;
+    
+    --border: 240 5% 90%;
+    
+    /* Aegis Semantic Palette - Adjusted for Light Mode */
+    --safety: 210 70% 45%;
+    --action: 140 50% 40%;
+    --caution: 35 90% 40%;
+    --alert: 0 70% 45%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen antialiased overflow-x-hidden transition-colors duration-500 leading-relaxed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-tight;
+  }
+}
+
+@layer components {
+  /* Utilities */
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/5;
+  }
+
+  .light .glass {
+    @apply bg-white/60 border-black/5;
+  }
+
+  .glass-hover {
+    @apply hover:bg-white/10 hover:border-white/10 transition-colors;
+  }
+
+  .light .glass-hover {
+    @apply hover:bg-black/5 hover:border-black/5;
+  }
+
+  /* Component Styles */
+
+  /* Button */
+  .res-button {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-medium text-sm transition-all duration-150 ease-out cursor-pointer border-none outline-none relative overflow-hidden no-underline tracking-wide active:scale-95 focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-primary;
+  }
+
+   .res-button-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+  }
+
+  .res-button-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+
+  .res-button-ghost {
+    @apply bg-transparent text-foreground border border-border hover:bg-surface-hover hover:border-foreground/20;
+  }
+
+  /* Insight Badge */
+  .res-insight-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border border-caution text-caution bg-caution/10 cursor-help transition-all duration-200 hover:bg-caution/20;
+  }
+
+  /* Choice Frame */
+  .res-choice-frame {
+    @apply border border-caution/50 rounded-lg p-6 relative transition-all duration-300;
+  }
+
+  .res-choice-frame.collapsed {
+    @apply border-dashed opacity-80;
+  }
+
+  .res-choice-frame-toggle {
+    @apply absolute -top-3 right-6 bg-background border border-caution text-caution text-xs px-3 py-1 rounded-full cursor-pointer font-medium hover:bg-caution/10;
+  }
+}
